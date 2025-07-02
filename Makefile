@@ -9,3 +9,6 @@ migrate:
 
 start:
 	uv run python manage.py runserver
+
+lint:
+	uv run ruff check
