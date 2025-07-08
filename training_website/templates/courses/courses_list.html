@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Все курсы{% endblock %}
+
+{% block body %}
+<a href="{% url 'course_create' %}">Создать курс</a>
+    <h1>Список курсов:</h1>
+    {% for course in courses %}
+        <h2><a href="{% url 'course_view' course.id %}">{{ course.title }}</a></h2>
+        <div>{{ course.description }}</div>
+        <a href="{% url 'course_update' course.id %}">Изменить</a>
+        <br>
+        <a href="{% url 'course_delete' course.id %}">Удалить</a>
+    {% endfor %}
+{% endblock %}

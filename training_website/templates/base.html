@@ -1,0 +1,33 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="ru-ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            
+            <a class="navbar-brand" href="/">Курсы - онлайн</a>
+            <a class="navbar-brand" href="{% url 'courses_list' %}">Курсы</a>
+            
+        </div>
+    </nav>
+
+    <main class="container mt-4">
+        {% bootstrap_messages %}
+        {% block body %}{% endblock %}
+    </main>
+    
+    <footer class="mt-auto py-3">
+        <div class="container text-center">
+            <a target="_blank" href="https://github.com/AlexandrBorovkov">Alexandr Borovkov</a>
+        </div>
+    </footer>
+</body>
+</html>

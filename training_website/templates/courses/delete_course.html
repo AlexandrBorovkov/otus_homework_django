@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Удаление курса{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Удаление курса</h1>
+        <p>Вы уверены, что хотите удалить?</p>
+    </div>
+</div>
+
+<form action="{% url 'course_delete' id=course_id %}" method="post" class="form mt-4">
+    {% csrf_token %}
+    {% bootstrap_button button_type="submit" content="Да, удалить" %}
+</form>
+{% endblock %}
