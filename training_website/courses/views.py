@@ -11,27 +11,30 @@ class CoursesListView(View):
         courses = Course.objects.all()
         return render(
             request,
-            "courses/courses_list.html",
+            'courses/courses_list.html',
             context={
-                "courses": courses,
+                'courses': courses,
             },
         )
 
 class CourseView(View):
     def get(self, request, *args, **kwargs):
-        course = get_object_or_404(Course, id=kwargs["id"])
+        course_id = kwargs.get('id')
+        course = get_object_or_404(
+            Course.objects.prefetch_related('teachers'),
+            id=course_id
+        )
         return render(
             request,
-            "courses/show_course.html",
+            'courses/show_course.html',
             context={
-                "course": course,
+                'course': course,
             },
         )
 
 class CourseCreateView(View):
     def get(self, request, *args, **kwargs):
         form = CourseForm()
-        print("GET request received")
         return render(request, 'courses/create_course.html', {'form': form})
 
     def post(self, request, *args, **kwargs):
@@ -45,7 +48,10 @@ class CourseCreateView(View):
 class CourseUpdateView(View):
     def get(self, request, *args, **kwargs):
         course_id = kwargs.get('id')
-        course = Course.objects.get(id=course_id)
+        course = get_object_or_404(
+            Course.objects.prefetch_related('teachers'),
+            id=course_id
+        )
         form = CourseForm(instance=course)
         return render(
             request,
