@@ -20,6 +20,7 @@ class CoursesListView(View):
 class CourseView(View):
     def get(self, request, *args, **kwargs):
         course_id = kwargs.get('id')
+        #  course = get_object_or_404(Course, id=course_id)
         course = get_object_or_404(
             Course.objects.prefetch_related('teachers'),
             id=course_id
@@ -48,6 +49,7 @@ class CourseCreateView(View):
 class CourseUpdateView(View):
     def get(self, request, *args, **kwargs):
         course_id = kwargs.get('id')
+        #  course = Course.objects.get(id=course_id)
         course = get_object_or_404(
             Course.objects.prefetch_related('teachers'),
             id=course_id
