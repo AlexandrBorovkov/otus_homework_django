@@ -1,6 +1,6 @@
 from django.db import models
 
-from training_website.teachers.models import Teacher
+from teachers.models import Teacher
 
 
 class Course(models.Model):

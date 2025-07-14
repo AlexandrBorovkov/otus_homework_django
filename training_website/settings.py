@@ -50,8 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'training_website',
-    'training_website.teachers',
-    'training_website.courses',
+    'teachers',
+    'courses',
+    'user_message',
     'django_bootstrap5',
     'debug_toolbar',
 ]

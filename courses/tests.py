@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 
-from training_website.courses.models import Course
+from courses.models import Course
 
 
 class CourseCRUDTests(TestCase):

@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from training_website.courses.forms import CourseForm
-from training_website.courses.models import Course
+from courses.forms import CourseForm
+from courses.models import Course
 
 
 class CoursesListView(View):

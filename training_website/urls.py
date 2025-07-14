@@ -20,7 +20,8 @@ from django.urls import include, path
 from training_website import views
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name="index"),
+    path('', views.IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
-    path('courses/', include('training_website.courses.urls'))
+    path('courses/', include('courses.urls')),
+    path('user_message/', include('user_message.urls')),
 ] + debug_toolbar_urls()

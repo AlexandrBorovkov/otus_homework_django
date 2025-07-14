@@ -1,6 +1,6 @@
 from django import forms
 
-from training_website.courses.models import Course
+from courses.models import Course
 
 
 class CourseForm(forms.ModelForm):

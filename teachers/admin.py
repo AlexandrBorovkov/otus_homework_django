@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.admin import DateFieldListFilter
 
-from training_website.teachers.models import Teacher
+from teachers.models import Teacher
 
 
 @admin.register(Teacher)

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Адрес</h1>
+        <p>125167, г. Москва, Нарышкинская аллея., д. 5, стр. 2 пн - пт, c 9:30 до 18:30</p>
+        <h1>Телефон</h1>
+        <p>+7 499 938-92-02</p>
+        <h1>Написать нам сообщение</h1>
+    </div>
+</div>
+<form action="{% url "user_message" %}" method="post" class="form mt-4">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Отправить" %}
+</form>
+{% endblock %}
