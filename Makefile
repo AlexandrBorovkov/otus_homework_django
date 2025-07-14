@@ -8,7 +8,7 @@ migrate:
 	uv run manage.py migrate
 
 start:
-	uv run manage.py runserver
+	redis-server --port 6380 & uv run manage.py rqworker default & uv run manage.py runserver
 
 lint:
 	uv run ruff check

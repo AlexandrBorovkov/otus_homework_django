@@ -41,11 +41,21 @@
     ```sh
     make install
     ```
+    - Установить redis:
+    ```sh
+    sudo apt-get update
+    sudo apt-get install redis
+    ```
 4. **Миграции**:
     ```sh
     make migrate
     ```
-5. **Запуск приложения**:
+5. **Регистрация яндекс-аккаунта**:
+
+    Регистрируем и настраиваем почту в соответствии с документацией:
+
+    https://yandex.ru/support/yandex-360/customers/mail/ru/mail-clients/others.html
+6. **Запуск приложения**:
     ```sh
     make start
     ```
