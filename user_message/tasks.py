@@ -20,6 +20,7 @@ def send_admin_notification(email, first_name, last_name, description):
         fail_silently=False,
     )
 
+
 def send_user_confirmation(email, first_name):
     subject = 'Ваше сообщение получено'
     message = (

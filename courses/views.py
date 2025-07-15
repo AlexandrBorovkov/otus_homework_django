@@ -1,93 +1,45 @@
-from django.contrib import messages
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views import View
+from django.urls import reverse_lazy
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from courses.forms import CourseForm
 from courses.models import Course
 
 
-class CoursesListView(View):
-    def get(self, request, *args, **kwargs):
-        courses = Course.objects.all()
-        return render(
-            request,
-            'courses/courses_list.html',
-            context={
-                'courses': courses,
-            },
-        )
+class CoursesListView(ListView):
+    model = Course
+    template_name = 'courses/courses_list.html'
+    context_object_name = 'courses'
 
-class CourseView(View):
-    def get(self, request, *args, **kwargs):
-        course_id = kwargs.get('id')
-        #  course = get_object_or_404(Course, id=course_id)
-        course = get_object_or_404(
-            Course.objects.prefetch_related('teachers'),
-            id=course_id
-        )
-        return render(
-            request,
-            'courses/show_course.html',
-            context={
-                'course': course,
-            },
-        )
 
-class CourseCreateView(View):
-    def get(self, request, *args, **kwargs):
-        form = CourseForm()
-        return render(request, 'courses/create_course.html', {'form': form})
+class CourseView(DetailView):
+    model = Course
+    template_name = 'courses/show_course.html'
+    context_object_name = 'course'
 
-    def post(self, request, *args, **kwargs):
-        form = CourseForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Курс успешно создан')
-            return redirect('courses_list')
-        return render(request, 'courses/create_course.html', {'form': form})
 
-class CourseUpdateView(View):
-    def get(self, request, *args, **kwargs):
-        course_id = kwargs.get('id')
-        #  course = Course.objects.get(id=course_id)
-        course = get_object_or_404(
-            Course.objects.prefetch_related('teachers'),
-            id=course_id
-        )
-        form = CourseForm(instance=course)
-        return render(
-            request,
-            'courses/update_course.html',
-            {'form': form, 'course_id': course_id}
-            )
+class CourseCreateView(CreateView):
+    model = Course
+    form_class = CourseForm
+    template_name = 'courses/create_course.html'
+    success_url = reverse_lazy('courses_list')
 
-    def post(self, request, *args, **kwargs):
-        course_id = kwargs.get('id')
-        course = Course.objects.get(id=course_id)
-        form = CourseForm(request.POST, instance=course)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Курс успешно обнавлен')
-            return redirect('courses_list')
-        return render(
-            request,
-            'courses/update_course.html',
-            {'form': form, 'course_id': course_id}
-            )
 
-class CourseDeleteView(View):
-    def get(self, request, *args, **kwargs):
-        course_id = kwargs.get('id')
-        return render(
-            request,
-            'courses/delete_course.html',
-            {'course_id': course_id}
-        )
+class CourseUpdateView(UpdateView):
+    model = Course
+    form_class = CourseForm
+    template_name = 'courses/update_course.html'
+    context_object_name = 'course'
+    success_url = reverse_lazy('courses_list')
 
-    def post(self, request, *args, **kwargs):
-        course_id = kwargs.get('id')
-        course = Course.objects.get(id=course_id)
-        if course:
-            course.delete()
-            messages.success(request, 'Курс успешно удален')
-        return redirect('courses_list')
+
+class CourseDeleteView(DeleteView):
+    model = Course
+    template_name = 'courses/delete_course.html'
+    context_object_name = 'course'
+    success_url = reverse_lazy('courses_list')

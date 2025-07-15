@@ -20,4 +20,5 @@ class CourseAdmin(admin.ModelAdmin):
         teachers = obj.teachers.all()
         return ", ".join([teacher.get_full_name() for teacher in teachers])
 
+
 admin.site.register(Lesson)

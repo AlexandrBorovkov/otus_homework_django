@@ -40,7 +40,7 @@ class CourseCRUDTests(TestCase):
         )
         response = self.client.post(
             reverse('course_update', args=[course.id]),
-            {'title': 'New Основы C#',}
+            {'title': 'New Основы C#'}
         )
         course.refresh_from_db()
         self.assertEqual(response.status_code, 302)
