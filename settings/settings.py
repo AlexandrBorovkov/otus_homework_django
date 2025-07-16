@@ -67,13 +67,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'training_website',
+    'settings',
     'teachers',
     'courses',
     'user_message',
+    'api',
     'django_bootstrap5',
     'debug_toolbar',
     'django_rq',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +89,7 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = 'training_website.urls'
+ROOT_URLCONF = 'settings.urls'
 
 TEMPLATES = [
     {
@@ -105,7 +107,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'training_website.wsgi.application'
+WSGI_APPLICATION = 'settings.wsgi.application'
 
 
 # Database

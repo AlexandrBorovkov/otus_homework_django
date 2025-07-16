@@ -17,11 +17,12 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from django.contrib import admin
 from django.urls import include, path
 
-from training_website import views
+from settings import views
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('admin/', admin.site.urls),
     path('courses/', include('courses.urls')),
     path('user_message/', include('user_message.urls')),
+    path('api/', include('api.urls')),
 ] + debug_toolbar_urls()
